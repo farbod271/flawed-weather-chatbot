@@ -5,6 +5,20 @@ const temp = require('./brain.json')
 const brain = JSON.parse(JSON.stringify(temp))
 const fetchWeather = require('./weather.js')
 
+async function extractCity(input) {
+  const cities = ['New York', 'London', 'Tokyo', 'Paris', 'Sydney']; // Add more cities as needed
+  for (let city of cities) {
+    if (input.toLowerCase().includes(city.toLowerCase())) {
+      return city;
+     }
+     else {
+       continue;
+     }
+
+}
+  return null;
+}
+
 
 
 var WebSocketClient = require('websocket').client
@@ -102,6 +116,9 @@ class bot {
     this.connected = true
   }
 
+
+  
+
   /** 
    * Hier muss ihre Verarbeitungslogik integriert werden.
    * Diese Funktion wird automatisch im Server aufgerufen, wenn etwas ankommt, das wir 
@@ -115,6 +132,10 @@ class bot {
     var name = 'MegaBot'
     var inhalt = 'Ich versteh gar nichts'
     this.sender=get.name;
+    var city = await extractCity(nachricht)
+
+
+    
 
 
     // for ( var i in this.dict) {
@@ -125,15 +146,15 @@ class bot {
     for (var j = 0 ;j<brain.answers.length ;j++) {
       if (nachricht.includes(brain.answers[j].intent) && brain.answers[j].answer != "function") {
             inhalt = brain.answers[j].answer
-            console.log(typeof nachricht)
           //  console.log(brain.answers[j].answer)
          }
-      else if (nachricht.includes(brain.answers[j].intent) && brain.answers[j].answer == "function"){
-        var response = await fetchWeather()
+      else if (nachricht.includes(brain.answers[j].intent) && brain.answers[j].answer == "function" || city != null) {
+        var response = await fetchWeather(city)
         inhalt = response.weather[0].description
       }
-
      }
+
+     
 
 
     var msg = '{"type": "msg", "name":"' + name + '", "msg":"' + inhalt + '","sender":"'+this.sender+'"}'

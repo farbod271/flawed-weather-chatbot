@@ -1,24 +1,13 @@
 require('dotenv').config()
 const axios = require('axios');
-
-// Import necessary modules
 API = process.env.API
 
 
 
-// const lat = '48.8333535';
-// const lon = '12.96205';
-const city = 'London'
-// Base URL for Weather API
-const baseUrl = "http://api.openweathermap.org/data/2.5/weather";
-
-// Construct the complete URL
-// const completeUrl = `${baseUrl}?lat=${lat}&lon=${lon}&appid=${API}&units=metric`;
-const completeUrl = `${baseUrl}?q=${city}&appid=${API}&units=metric`;
-
-// Function to fetch weather data
-async function fetchWeather() {
+async function fetchWeather(city) {
     try {
+        const baseUrl = "http://api.openweathermap.org/data/2.5/weather";
+        const completeUrl = `${baseUrl}?q=${city}&appid=${API}&units=metric`;
         const response = await axios.get(completeUrl);
         if (!response.status_code == 200) {
             throw new Error(`HTTP error! Status: ${response}`);
