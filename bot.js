@@ -150,7 +150,7 @@ class bot {
          }
       else if (nachricht.includes(brain.answers[j].intent) && brain.answers[j].answer == "function" || city != null) {
         var response = await fetchWeather(city)
-        inhalt = response.weather[0].description
+        inhalt = response.main.temp
       }
      }
 
