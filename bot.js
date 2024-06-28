@@ -1,23 +1,11 @@
 'use strict'
 
 const { json } = require('express');
-const temp = require('./brain.json')
-const brain = JSON.parse(JSON.stringify(temp))
-const fetchWeather = require('./weather.js')
+const go = require('./brain.js')
+// const brain = JSON.parse(JSON.stringify(temp))
 
-async function extractCity(input) {
-  const cities = ['New York', 'London', 'Tokyo', 'Paris', 'Sydney']; // Add more cities as needed
-  for (let city of cities) {
-    if (input.toLowerCase().includes(city.toLowerCase())) {
-      return city;
-     }
-     else {
-       continue;
-     }
 
-}
-  return null;
-}
+
 
 
 
@@ -35,13 +23,6 @@ class bot {
    */
   constructor () {
     
-    // this.dict = []
-    // this.dict['suche'] = 'Wenn sie etwas suchen sind Sie hier falsch es geht um Drogen'
-    // this.dict['rauche'] = 'Rauchen ist eine schreckliche Sache.'
-    // this.dict['trinke'] = 'Trinken kann man auch Wasser.'
-    // this.dict['schlafen'] = 'Schlafen wirkt wie eine Droge ist aber gesund.'
-    // this.dict['saufe'] = 'Wasser saufen ist gesund.'
-    // this.sender="";
     this.sender="";
 
   
@@ -128,31 +109,12 @@ class bot {
   async post (msg) {
 
     var get=JSON.parse(msg);
-    var nachricht = get.msg.toLowerCase();
+    var nachricht = get.msg.toLowerCase().split(' ');
     var name = 'MegaBot'
-    var inhalt = 'Ich versteh gar nichts'
-    this.sender=get.name;
-    var city = await extractCity(nachricht)
-
-
+    var inhalt = 'Ich habe keine Antwort auf Ihre Frage. Bitte versuchen Sie es erneut.'
+    this.sender=get.name;    
+    inhalt = await go(nachricht);
     
-
-
-    // for ( var i in this.dict) {
-    //   console.log(i)
-    //   console.log(this.dict[i])
-    // }
-
-    for (var j = 0 ;j<brain.answers.length ;j++) {
-      if (nachricht.includes(brain.answers[j].intent) && brain.answers[j].answer != "function") {
-            inhalt = brain.answers[j].answer
-          //  console.log(brain.answers[j].answer)
-         }
-      else if (nachricht.includes(brain.answers[j].intent) && brain.answers[j].answer == "function" || city != null) {
-        var response = await fetchWeather(city)
-        inhalt = response.main.temp
-      }
-     }
 
      
 

@@ -13,9 +13,9 @@ async function fetchWeather(city) {
             throw new Error(`HTTP error! Status: ${response}`);
         }
 
-        const weatherData = await response;
-        console.log(weatherData.data);
-        return weatherData.data;
+        const weatherData = await response.data;
+        // console.log(weatherData);
+        return weatherData;
 
         // Extract necessary data
         // const temperature = (weatherData.main.temp);
@@ -46,6 +46,8 @@ async function fetchWeather(city) {
 
 //export
 module.exports = fetchWeather;
+
+fetchWeather("Berlin");
 
 
 
