@@ -1,23 +1,27 @@
-const fetchWeather = require('./weather.js')
-const extractCity = require('./cityExtractor.js')
-const t = require('./history.json')
 const fs = require('fs')
-async function go(nachricht) {
+async function go(nachricht, unparsed_nachricht) {
+  var extractCity = require('./cityExtractor.js')
+  var fetchWeather = require('./weather.js')
+  var weather = null;
+  var t = null 
+t = require('./history.json')
 
 
-
-var city = await extractCity(nachricht);
+var city = await extractCity(unparsed_nachricht);
     if (city == null) {
-      var weather = t
-      // console.log(weather)
+      weather = t
+      console.log('inside' + JSON.stringify(weather))
       
     }
     //else weather is the last weather entry saved in a json file called history.json
     else {
       weather = await fetchWeather(city);
       fs.writeFileSync('history.json', JSON.stringify(weather, null, 2))
+      // console.log(weather)
+      console.log(city)
 
 }
+
 
 
 
@@ -47,6 +51,8 @@ var wind_speed = wind.speed;
 var wind_deg = wind.deg;
 var wind_gust = wind.gust;
 
+console.log('this is' + name)
+
 // var brain = {
 //   "answers" :[
 //     {"intent":"cola", "answer":"Ich habe Cola notiert. Sie kostet 1€, möchten Sie noch ein Getränk bestellen"},
@@ -65,59 +71,59 @@ var brain = {
     },
     {
       "intent": ["klima", "temp", "temperatur"],
-      "answer": `Der Klima von ${city} ist ${temp}°C`
+      "answer": `Der Klima von ${name} ist ${temp}°C`
     },
     {
       "intent": ["wetterlage", "wetter", "himmel"],
-      "answer": `In ${city} herrscht momentan ${description}. Der Himmel zeigt sich von seiner ${status.toLowerCase()} Seite.`
+      "answer": `In ${name} herrscht momentan ${description}. Der Himmel zeigt sich von seiner ${status.toLowerCase()} Seite.`
     },
     {
       "intent": ["temperaturempfinden", "gefuehlte temperatur", "empfinden", "gefuehl", "fuehlt sich an"],
-      "answer": `Es fühlt sich in ${city} wie ${feels_like}°C an. Die tatsächliche Temperatur beträgt ${temp}°C. Ziehen Sie sich entsprechend an!`
+      "answer": `Es fühlt sich in ${name} wie ${feels_like}°C an. Die tatsächliche Temperatur beträgt ${temp}°C. Ziehen Sie sich entsprechend an!`
     },
     {
       "intent": ["temperaturspanne", "tiefsttemperatur", "hoechsttemperatur"],
-      "answer": `Heute erwarten wir in ${city} Temperaturen zwischen ${temp_min}°C und ${temp_max}°C. Ein perfekter Tag für alle Wetterlagen!`
+      "answer": `Heute erwarten wir in ${name} Temperaturen zwischen ${temp_min}°C und ${temp_max}°C. Ein perfekter Tag für alle Wetterlagen!`
     },
     {
       "intent": ["luftfeuchtigkeit", "feuchtigkeit"],
-      "answer": `Die Luftfeuchtigkeit in ${city} beträgt aktuell ${humidity}%. ${humidity > 60 ? 'Etwas schwül heute, nicht wahr?' : 'Angenehm trocken, finden Sie nicht?'}`
+      "answer": `Die Luftfeuchtigkeit in ${name} beträgt aktuell ${humidity}%. ${humidity > 60 ? 'Etwas schwül heute, nicht wahr?' : 'Angenehm trocken, finden Sie nicht?'}`
     },
     {
       "intent": ["windverhaeltnisse", "wind", "boeen", "windgeschwindigkeit"],
-      "answer": `Der Wind weht in ${city} mit einer Geschwindigkeit von ${wind_speed} m/s aus ${wind_deg}°. ${wind_gust ? `Böen erreichen sogar ${wind_gust} m/s. Halten Sie Ihren Hut fest!` : 'Eine sanfte Brise, genießen Sie es!'}`
+      "answer": `Der Wind weht in ${name} mit einer Geschwindigkeit von ${wind_speed} m/s aus ${wind_deg}°. ${wind_gust ? `Böen erreichen sogar ${wind_gust} m/s. Halten Sie Ihren Hut fest!` : 'Eine sanfte Brise, genießen Sie es!'}`
     },
     {
       "intent": ["sichtweite", "sicht"],
-      "answer": `Die Sichtweite in ${city} beträgt ${visibility} Meter. ${visibility > 10000 ? 'Ein kristallklarer Tag!' : 'Vielleicht nehmen Sie heute lieber eine Taschenlampe mit.'}`
+      "answer": `Die Sichtweite in ${name} beträgt ${visibility} Meter. ${visibility > 10000 ? 'Ein kristallklarer Tag!' : 'Vielleicht nehmen Sie heute lieber eine Taschenlampe mit.'}`
     },
     {
       "intent": ["luftdruck", "druck"],
-      "answer": `Der Luftdruck in ${city} liegt bei ${pressure} hPa. ${pressure > 1013 ? 'Hochdruckwetter, perfekt für Outdoor-Aktivitäten!' : 'Tiefdruck könnte Regen bringen, haben Sie einen Schirm dabei?'}`
+      "answer": `Der Luftdruck in ${name} liegt bei ${pressure} hPa. ${pressure > 1013 ? 'Hochdruckwetter, perfekt für Outdoor-Aktivitäten!' : 'Tiefdruck könnte Regen bringen, haben Sie einen Schirm dabei?'}`
     },
     {
       "intent": ["koordinaten", "position", "geografische lage"],
-      "answer": `${city} befindet sich auf den Koordinaten ${lat}° nördlicher Breite und ${lon}° östlicher Länge. Eine wahrhaft einzigartige Position auf unserem wunderbaren Planeten!`
+      "answer": `${name} befindet sich auf den Koordinaten ${lat}° nördlicher Breite und ${lon}° östlicher Länge. Eine wahrhaft einzigartige Position auf unserem wunderbaren Planeten!`
     },
     {
       "intent": ["wolkenbedeckung", "wolken"],
-      "answer": `Die Wolkenbedeckung in ${city} beträgt ${clouds.all}%. ${clouds.all < 30 ? 'Ein strahlend blauer Himmel erwartet Sie!' : clouds.all > 70 ? 'Heute versteckt sich die Sonne hinter einer dichten Wolkendecke.' : 'Malerische Wolkenformationen zieren den Himmel.'}`
+      "answer": `Die Wolkenbedeckung in ${name} beträgt ${clouds.all}%. ${clouds.all < 30 ? 'Ein strahlend blauer Himmel erwartet Sie!' : clouds.all > 70 ? 'Heute versteckt sich die Sonne hinter einer dichten Wolkendecke.' : 'Malerische Wolkenformationen zieren den Himmel.'}`
     },
     {
       "intent": ["zeitzone", "zeitunterschied", "uhrzeit"],
-      "answer": `${city} befindet sich in der Zeitzone UTC${timezone > 0 ? '+' : ''}${timezone / 3600}. ${Math.abs(timezone) > 7200 ? 'Vergessen Sie nicht, Ihre Uhr anzupassen!' : 'Kein großer Zeitunterschied zu bewältigen.'}`
+      "answer": `${name} befindet sich in der Zeitzone UTC${timezone > 0 ? '+' : ''}${timezone / 3600}. ${Math.abs(timezone) > 7200 ? 'Vergessen Sie nicht, Ihre Uhr anzupassen!' : 'Kein großer Zeitunterschied zu bewältigen.'}`
     }
   ]
 }
 
 
 
-console.log(nachricht)
+// console.log(nachricht)
 
 for (var answer of brain.answers) {
-  console.log('j is' + answer.intent)
+  // console.log('j is' + answer.intent)
   for (var inter of answer.intent) {
-    console.log('i is' + inter)
+    // console.log('i is' + inter)
     if (nachricht.includes(inter)) {
       inhalt = answer.answer;
       return inhalt;
