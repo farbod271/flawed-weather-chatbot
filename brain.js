@@ -4,13 +4,15 @@ async function go(nachricht, unparsed_nachricht) {
   var fetchWeather = require('./weather.js')
   var weather = null;
   var t = null 
+console.log('t null is' + t)
 t = require('./history.json')
+console.log('t is' + JSON.stringify(t))
 
 
 var city = await extractCity(unparsed_nachricht);
     if (city == null) {
       weather = t
-      console.log('inside' + JSON.stringify(weather))
+      // console.log('inside' + JSON.stringify(weather))
       
     }
     //else weather is the last weather entry saved in a json file called history.json
