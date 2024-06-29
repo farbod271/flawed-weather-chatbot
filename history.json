@@ -1,48 +1,46 @@
 {
   "coord": {
-    "lon": 139.6917,
-    "lat": 35.6895
+    "lon": 13.4105,
+    "lat": 52.5244
   },
   "weather": [
     {
-      "id": 520,
-      "main": "Rain",
-      "description": "light intensity shower rain",
-      "icon": "09d"
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01d"
     }
   ],
   "base": "stations",
   "main": {
-    "temp": 22.35,
-    "feels_like": 23.07,
-    "temp_min": 21.39,
-    "temp_max": 23.12,
-    "pressure": 1007,
-    "humidity": 93,
-    "sea_level": 1007,
-    "grnd_level": 1005
+    "temp": 27.41,
+    "feels_like": 28.98,
+    "temp_min": 26.01,
+    "temp_max": 28.88,
+    "pressure": 1011,
+    "humidity": 64,
+    "sea_level": 1011,
+    "grnd_level": 1006
   },
-  "visibility": 9000,
+  "visibility": 10000,
   "wind": {
-    "speed": 3.09,
-    "deg": 300
-  },
-  "rain": {
-    "1h": 5.96
+    "speed": 3.58,
+    "deg": 235,
+    "gust": 5.36
   },
   "clouds": {
-    "all": 75
+    "all": 0
   },
-  "dt": 1719560520,
+  "dt": 1719564724,
   "sys": {
     "type": 2,
-    "id": 268395,
-    "country": "JP",
-    "sunrise": 1719516460,
-    "sunset": 1719568864
+    "id": 2011538,
+    "country": "DE",
+    "sunrise": 1719542754,
+    "sunset": 1719603193
   },
-  "timezone": 32400,
-  "id": 1850144,
-  "name": "Tokyo",
+  "timezone": 7200,
+  "id": 2950159,
+  "name": "Berlin",
   "cod": 200
 }

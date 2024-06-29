@@ -3,28 +3,29 @@ async function go(nachricht, unparsed_nachricht) {
   var extractCity = require('./cityExtractor.js')
   var fetchWeather = require('./weather.js')
   var weather = null;
-  var t = null 
-console.log('t null is' + t)
-t = require('./history.json')
-console.log('t is' + JSON.stringify(t))
+
 
 
 var city = await extractCity(unparsed_nachricht);
     if (city == null) {
-      weather = t
-      // console.log('inside' + JSON.stringify(weather))
+
       
+      try {
+        const data = fs.readFileSync('history.json', 'utf8');
+        var weather = JSON.parse(data);
+        console.log(weather);
+      } catch (err) {
+        console.error(err);
+      }
+      
+
     }
     //else weather is the last weather entry saved in a json file called history.json
     else {
       weather = await fetchWeather(city);
       fs.writeFileSync('history.json', JSON.stringify(weather, null, 2))
-      // console.log(weather)
-      console.log(city)
 
 }
-
-
 
 
 var lon = weather.coord.lon;
@@ -52,17 +53,6 @@ var name = weather.name;
 var wind_speed = wind.speed;
 var wind_deg = wind.deg;
 var wind_gust = wind.gust;
-
-console.log('this is' + name)
-
-// var brain = {
-//   "answers" :[
-//     {"intent":"cola", "answer":"Ich habe Cola notiert. Sie kostet 1€, möchten Sie noch ein Getränk bestellen"},
-//     {"intent":"klima", "answer":`Der Klima von ${city} ist ${temp}°C`},
-
-//   ]
-
-// }
 
 
 var brain = {
@@ -120,12 +110,9 @@ var brain = {
 
 
 
-// console.log(nachricht)
 
 for (var answer of brain.answers) {
-  // console.log('j is' + answer.intent)
   for (var inter of answer.intent) {
-    // console.log('i is' + inter)
     if (nachricht.includes(inter)) {
       inhalt = answer.answer;
       return inhalt;
