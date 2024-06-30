@@ -117,6 +117,7 @@ var brain = {
 
   //this is status code 2
 if (result.status === 2) {
+  let i = 0;
   for (var answer of brain.zwei) {
     for (var inter of answer.intent) {
       if (nachricht.includes(inter)) {
@@ -124,9 +125,18 @@ if (result.status === 2) {
         return inhalt;
       }
     }
-   }
-  return `Ich habe dich nicht verstanden was sie uber den sdadt ${name} gefragt haben. Bitte formuliere deine Frage um oder waelen sie einen neuen sdadt aus`
+  }
+
+      return `Ich habe dich nicht verstanden was sie uber den sdadt ${name} gefragt haben. Bitte formuliere deine Frage um oder waelen sie einen neuen sdadt aus`
 }
+//    if (i === 0) {
+//      i++;
+//      return `Ich habe dich nicht verstanden was sie uber den sdadt ${name} gefragt haben. Bitte formuliere deine Frage um oder waelen sie einen neuen sdadt aus`
+//     }
+//   if (i > 1) {
+//     return 'wieso fangen wir nicht von vorne an. Bitte geben sie eine Stadt ein';
+//   }
+// }
 
 //this is status code 1
 // if (result.status == 1) {

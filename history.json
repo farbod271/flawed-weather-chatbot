@@ -221,24 +221,24 @@
       ],
       "base": "stations",
       "main": {
-        "temp": 30.4,
-        "feels_like": 28.79,
-        "temp_min": 30.4,
-        "temp_max": 30.99,
-        "pressure": 1003,
-        "humidity": 25,
-        "sea_level": 1003,
-        "grnd_level": 857
+        "temp": 29.84,
+        "feels_like": 28.41,
+        "temp_min": 29.84,
+        "temp_max": 29.99,
+        "pressure": 1004,
+        "humidity": 27,
+        "sea_level": 1004,
+        "grnd_level": 858
       },
-      "visibility": 8000,
+      "visibility": 10000,
       "wind": {
-        "speed": 6.17,
-        "deg": 280
+        "speed": 4.12,
+        "deg": 290
       },
       "clouds": {
-        "all": 2
+        "all": 0
       },
-      "dt": 1719767667,
+      "dt": 1719770416,
       "sys": {
         "type": 2,
         "id": 47737,
@@ -493,6 +493,55 @@
       "timezone": 7200,
       "id": 2938540,
       "name": "Deggendorf",
+      "cod": 200
+    }
+  },
+  "entry-22": {
+    "user": "name604",
+    "weather": {
+      "coord": {
+        "lon": -74.006,
+        "lat": 40.7143
+      },
+      "weather": [
+        {
+          "id": 803,
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "base": "stations",
+      "main": {
+        "temp": 28.41,
+        "feels_like": 32.12,
+        "temp_min": 26.31,
+        "temp_max": 30.38,
+        "pressure": 1012,
+        "humidity": 74,
+        "sea_level": 1012,
+        "grnd_level": 1010
+      },
+      "visibility": 10000,
+      "wind": {
+        "speed": 6.69,
+        "deg": 220,
+        "gust": 12.35
+      },
+      "clouds": {
+        "all": 75
+      },
+      "dt": 1719770186,
+      "sys": {
+        "type": 2,
+        "id": 2037026,
+        "country": "US",
+        "sunrise": 1719739693,
+        "sunset": 1719793864
+      },
+      "timezone": -14400,
+      "id": 5128581,
+      "name": "New York",
       "cod": 200
     }
   }
