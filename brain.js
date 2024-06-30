@@ -1,31 +1,20 @@
 const fs = require('fs')
-async function go(nachricht, unparsed_nachricht) {
-  var extractCity = require('./cityExtractor.js')
-  var fetchWeather = require('./weather.js')
-  var weather = null;
+const dataProcessor = require('./test/dataProcessor.js')
 
 
 
-var city = await extractCity(unparsed_nachricht);
-    if (city == null) {
 
-      
-      try {
-        const data = fs.readFileSync('history.json', 'utf8');
-        var weather = JSON.parse(data);
-        console.log(weather);
-      } catch (err) {
-        console.error(err);
-      }
-      
 
-    }
-    //else weather is the last weather entry saved in a json file called history.json
-    else {
-      weather = await fetchWeather(city);
-      fs.writeFileSync('history.json', JSON.stringify(weather, null, 2))
+async function go(nachricht, unparsed_nachricht, user) {
 
-}
+result = dataProcessor(nachricht, unparsed_nachricht, user)
+
+
+  // var weather = null;
+
+
+
+
 
 
 var lon = weather.coord.lon;
@@ -109,8 +98,9 @@ var brain = {
 }
 
 
+//implement a swich case for the status codes
 
-
+//this is status code 2
 for (var answer of brain.answers) {
   for (var inter of answer.intent) {
     if (nachricht.includes(inter)) {
@@ -118,9 +108,16 @@ for (var answer of brain.answers) {
       return inhalt;
     }
   }
-  
  }
-return "Ich habe dich nicht verstanden. Bitte formuliere deine Frage um."
+return `Ich habe dich nicht verstanden was sie uber den sdadt ${city} gefragt haben. Bitte formuliere deine Frage um.`
+
+
+//this is status code 1
+
+
+
+//this is status code 0
+
 
 }
 

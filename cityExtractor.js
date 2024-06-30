@@ -47,6 +47,7 @@ async function extractCity(input) {
         }
         
       }
+      
       return null;
     }
 

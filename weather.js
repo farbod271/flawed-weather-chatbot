@@ -1,10 +1,10 @@
 require('dotenv').config()
 const axios = require('axios');
-API = process.env.API
 
 
 
 async function fetchWeather(city) {
+    const API = process.env.API
     try {
         const baseUrl = "http://api.openweathermap.org/data/2.5/weather";
         const completeUrl = `${baseUrl}?q=${city}&appid=${API}&units=metric`;
@@ -19,7 +19,9 @@ async function fetchWeather(city) {
     } catch (error) {
         console.error("Error fetching weather data:", error);
     }
+
 }
+
 
 module.exports = fetchWeather;
 

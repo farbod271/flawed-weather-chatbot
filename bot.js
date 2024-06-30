@@ -77,6 +77,7 @@ class bot {
       */
       function joinGesp () {
         if (connection.connected) {
+
           connection.sendUTF('{"type": "join", "name":"MegaBot"}')
           var inhalt= "Servus!  Ich bin WetterBot. Weale einen sdadt ein und ich sage dir das Wetter."
           var msg = '{"type": "msg", "name": "' + "MegaBot" + '", "msg":"' + inhalt + '","sender":"MegaBot" }'
@@ -109,15 +110,18 @@ class bot {
   async post (msg) {
 
     var get=JSON.parse(msg);
+    var user = get.name;
+    console.log(get)
     var unparsed_nachricht = get.msg.toLowerCase();
     var nachricht = get.msg.toLowerCase().split(' ');
     var name = 'MegaBot'
     var inhalt = 'Ich habe keine Antwort auf Ihre Frage. Bitte versuchen Sie es erneut.'
-    this.sender=get.name;    
-    inhalt = await go(nachricht, unparsed_nachricht);
-    
 
-     
+    this.sender=get.name;    
+    inhalt = await go(nachricht, unparsed_nachricht, user);
+
+
+
 
 
     var msg = '{"type": "msg", "name":"' + name + '", "msg":"' + inhalt + '","sender":"'+this.sender+'"}'
