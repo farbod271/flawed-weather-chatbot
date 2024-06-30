@@ -17,14 +17,20 @@
             <button class="button" id="sendBtn">Send</button>
             </form>
 
+
+            
+            <div class="scrollbar" id="scrollbar1">
+
+            </div>
             <script>
                 const answers = new Array(40); 
                 var i = 0;
                 var socket = new WebSocket('ws://127.0.0.1:8181/', 'chat');
                 var name = 'u1'
+                name = "name" + Math.floor(Math.random() * Math.floor(700));
+                
                 socket.onopen = function () {
                     
-                    name = "name" + Math.floor(Math.random() * Math.floor(700));
                     
                     socket.send('{"type": "join", "name":"'+name+'"}');
                     console.log(name);
@@ -69,6 +75,10 @@
                             // }
 
                     }
+
+                    const scrollableDiv = document.getElementById('scrollbar1');
+                    scrollableDiv.scrollTop = scrollableDiv.scrollHeight;
+
                 };
                 
                 </script>
@@ -76,9 +86,6 @@
 
 
 
-            <div class="scrollbar" id="scrollbar1">
-
-            </div>
          </div>
     </body>
 </html>

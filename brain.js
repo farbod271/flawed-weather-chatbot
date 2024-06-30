@@ -7,45 +7,58 @@ const dataProcessor = require('./test/dataProcessor.js')
 
 async function go(nachricht, unparsed_nachricht, user) {
 
-result = dataProcessor(nachricht, unparsed_nachricht, user)
-
-
-  // var weather = null;
-
+result = await dataProcessor(nachricht, unparsed_nachricht, user)
+console.log(result)
 
 
 
 
 
-var lon = weather.coord.lon;
-var lat = weather.coord.lat;
-var base = weather.base;
-var status = weather.weather[0].main;
-var description = weather.weather[0].description;
-var icon = weather.weather[0].icon
-var main = weather.main;
-var temp = weather.main.temp;
-var feels_like = weather.main.feels_like 
-var temp_min = weather.main.temp_min
-var temp_max = weather.main.temp_max
-var pressure = weather.main.pressure
-var humidity = weather.main.humidity
-var sea_level = weather.main.sea_level
-var grnd_level = weather.main.grnd_level
-var visibility = weather.visibility;
-var wind = weather.wind;
-var clouds = weather.clouds;
-var sys = weather.sys;
-var timezone = weather.timezone;
-var id = weather.id;
-var name = weather.name;
-var wind_speed = wind.speed;
-var wind_deg = wind.deg;
-var wind_gust = wind.gust;
+if (result.status == 2) {
 
+  
+  var lon = weather.coord.lon;
+  var lat = weather.coord.lat;
+  var base = weather.base;
+  var main_status = weather.weather[0].main;
+  var description = weather.weather[0].description;
+  var icon = weather.weather[0].icon
+  var main = weather.main;
+  var temp = weather.main.temp;
+  var feels_like = weather.main.feels_like 
+  var temp_min = weather.main.temp_min
+  var temp_max = weather.main.temp_max
+  var pressure = weather.main.pressure
+  var humidity = weather.main.humidity
+  var sea_level = weather.main.sea_level
+  var grnd_level = weather.main.grnd_level
+  var visibility = weather.visibility;
+  var wind = weather.wind;
+  var clouds = weather.clouds;
+  var sys = weather.sys;
+  var timezone = weather.timezone;
+  var id = weather.id;
+  var name = weather.name;
+  var wind_speed = wind.speed;
+  var wind_deg = wind.deg;
+  var wind_gust = wind.gust;
+
+
+  
+}
+
+
+if (result.status == 1) {
+  return `bitte geben sie eine Stadt ein`
+}
+
+
+if (result.status == 0) {
+  return `hallo ich bin ein wetter bot. Bitte geben sie eine Stadt ein`
+}
 
 var brain = {
-  "answers": [
+  "zwei": [
     {
       "intent": ["cola",],
       "answer": "Ich habe Cola notiert. Sie kostet 1€, möchten Sie noch ein Getränk bestellen"
@@ -56,7 +69,7 @@ var brain = {
     },
     {
       "intent": ["wetterlage", "wetter", "himmel"],
-      "answer": `In ${name} herrscht momentan ${description}. Der Himmel zeigt sich von seiner ${status.toLowerCase()} Seite.`
+      "answer": `In ${name} herrscht momentan ${description}. Der Himmel zeigt sich von seiner ${main_status} Seite.`
     },
     {
       "intent": ["temperaturempfinden", "gefuehlte temperatur", "empfinden", "gefuehl", "fuehlt sich an"],
@@ -94,26 +107,31 @@ var brain = {
       "intent": ["zeitzone", "zeitunterschied", "uhrzeit"],
       "answer": `${name} befindet sich in der Zeitzone UTC${timezone > 0 ? '+' : ''}${timezone / 3600}. ${Math.abs(timezone) > 7200 ? 'Vergessen Sie nicht, Ihre Uhr anzupassen!' : 'Kein großer Zeitunterschied zu bewältigen.'}`
     }
-  ]
+  ],
+  "eins": [],
+  "null": []
 }
 
 
 //implement a swich case for the status codes
 
-//this is status code 2
-for (var answer of brain.answers) {
-  for (var inter of answer.intent) {
-    if (nachricht.includes(inter)) {
-      inhalt = answer.answer;
-      return inhalt;
+  //this is status code 2
+if (result.status === 2) {
+  for (var answer of brain.zwei) {
+    for (var inter of answer.intent) {
+      if (nachricht.includes(inter)) {
+        inhalt = answer.answer;
+        return inhalt;
+      }
     }
-  }
- }
-return `Ich habe dich nicht verstanden was sie uber den sdadt ${city} gefragt haben. Bitte formuliere deine Frage um.`
-
+   }
+  return `Ich habe dich nicht verstanden was sie uber den sdadt ${name} gefragt haben. Bitte formuliere deine Frage um oder waelen sie einen neuen sdadt aus`
+}
 
 //this is status code 1
-
+// if (result.status == 1) {
+//   return `bitte geben sie eine Stadt ein`
+// }
 
 
 //this is status code 0

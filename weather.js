@@ -14,6 +14,7 @@ async function fetchWeather(city) {
         }
 
         const weatherData = await response.data;
+        // console.log(weatherData)
         return weatherData;
 
     } catch (error) {
@@ -22,7 +23,7 @@ async function fetchWeather(city) {
 
 }
 
-
+fetchWeather("berlin")
 module.exports = fetchWeather;
 
 
