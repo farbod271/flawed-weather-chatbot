@@ -51,12 +51,12 @@
                             //         '</div>');
                             // $('#scrollbar1').append(msg);
 
-                            if (data.name == "MegaBot") {
+                            if ((name == data.sender && data.name=="MegaBot")) {
                                 var msg = $('<div class="msg">' + data.msg +
                                     '</div>');
                                 $('#scrollbar1').append(msg);
                             }
-                            else {
+                            else if(data.name == data.sender  && data.sender==name) {
                                 var msg = $('<div class="msg-send">' + data.msg +
                                     '</div>');
                                 $('#scrollbar1').append(msg);
