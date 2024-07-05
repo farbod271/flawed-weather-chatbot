@@ -1,4 +1,9 @@
-.body,html{
+* { 
+    box-sizing: content-box;
+}
+
+body,html{
+    margin: 0;
     height: 100%;
     background: #7F7FD5;
     background: linear-gradient(to top, #91EAE4, #8caee5, #6171ac)
@@ -13,7 +18,7 @@
     height: 110px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15px;
+    margin-top: 100px;
 }
 
 .card-header span{
@@ -71,7 +76,7 @@
     color: white;
     text-align: center;
     display: inline-block;
-    font-size: 13px;
+    font-size: 16px;
     position:absolute;
     bottom: 20px;
     right: 20px;
@@ -135,8 +140,63 @@
     align-self: end;
 }
 
-* { box-sizing: content-box;
-    float: center;
+@media only screen and (max-width:768px) {
+
+    body {
+        height: 100vh;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .container {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        bottom: 20px;
+    }
+    .card-header span{
+        font-size: 25px;
+        display: inline-block;
+    }
+    .card-header p{
+        font-size: 27px;
+        display: inline-block;
+    }
+    .card-header{
+        margin-top: 30px;
+        padding: 20px;
+        height: 17%;
+        width: 80%;
+    }
+    .chat-body{
+        padding: 20px;
+        height:70%;
+        width: 80%;
+    }
+    .type_msg{
+        height: 37px;
+    }
+    .scrollbar {
+        height: 415px;
+        padding: 10px;
+}
+.type_msg{
+    color: rgb(32, 233, 255);
+    background-color: rgba(86, 107, 131, 0.612) ;
+    /* text-size-adjust: 10px; */
+    font-size: large;
+    border-radius: 10px 0px 0px 10px ;
+    border: 0px ;
+    border-right-width: 30px;
+    height: 37px;
+    width: 280px;
+    overflow: visible;
+    position:absolute;
+    bottom: 20px;
+    left: 20px;
+    resize: none;
+    text-align:left, center;
+}
 }
 
 @media only screen and (min-width:768px) {
@@ -207,7 +267,7 @@
 }
 
 
- @media only screen and (max-height:600px) {
+ /* @media only screen and (max-width:600px) {
 
     .card-header span{
         font-size: 24px;
@@ -219,11 +279,11 @@
     }
     .card-header{
         padding: 20px;
-        height: 80px;
+        height: 400px;
     }
     .chat-body{
         padding: 20px;
-        height: 200px;
+        height: 900px;
     }
     .type_msg{
         height: 37px;
@@ -232,31 +292,6 @@
         height: 125px;
         padding: 10px;
 }
-}
+} */
 
-@media only screen and (min-height:750px) {
 
-    .card-header span{
-        font-size: 33px;
-        display: inline-block;
-    }
-    .card-header p{
-        font-size: 27px;
-        display: inline-block;
-    }
-    .card-header{
-        padding: 20px;
-        height: 130px;
-    }
-    .chat-body{
-        padding: 20px;
-        height: 500px;
-    }
-    .type_msg{
-        height: 37px;
-    }
-    .scrollbar {
-        height: 425px;
-        padding: 10px;
-}
-}
