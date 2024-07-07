@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const extractCity = require('./cityExtractor');
 var fetchWeather = require('./weather');
-const filePath = 'history.json'; 
+const filePath = './history.json'; 
 
 
 async function dataProcessor (nachricht, unparsed_nachricht, user) {
@@ -43,6 +43,8 @@ var city = await extractCity(unparsed_nachricht);
                     jsonData[key].weather = weather;              
                     result.status = 2;
                     result.weather = weather;
+                    jsonData[key].hardfallback = 0;
+
                     // console.log("shoulds")
 
                     break;
@@ -74,11 +76,13 @@ var city = await extractCity(unparsed_nachricht);
                 // jsonData[newkey].weather = weather;    
                 jsonData[newkey] = {
                     user: user,
-                    weather: weather
+                    last: 0,
+                    weather: weather,
+                    hardfallback: 0
                 };
                 result.status = 2;
                 result.weather = weather;
-                // console.log("this is")
+                console.log("this is")
                 break;
             }
             else if (!city && jsonData[key].user !== user && i == length ) {
@@ -86,7 +90,10 @@ var city = await extractCity(unparsed_nachricht);
                 let newkey = `entry-${length+1}`;
                 jsonData[newkey] = {
                     user: user,
-                    weather: {}
+                    last: 0,
+                    weather: {},
+                    hardfallback: 0
+
                 }; 
                 break;
             }

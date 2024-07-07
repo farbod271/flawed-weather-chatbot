@@ -36,7 +36,7 @@ async function extractCity(input) {
     'deggendorf', 'Passau', 'Regensburg', 'Landshut', 'Straubing',
     'Berlin', 'Hamburg', 'Munich', 'Cologne', 'Frankfurt',
     'Stuttgart', 'Düsseldorf', 'Dortmund', 'Essen', 'Leipzig',
-    'Bremen', 'Dresden', 'Hanover', 'Nuremberg', 'Duisburg'
+    'Bremen', 'Dresden', 'Hanover', 'Nuremberg', 'Duisburg', 'münchen'
 ]; // Add more cities as needed
     for (let city of cities) {
       if (input.includes(city.toLowerCase())) {
