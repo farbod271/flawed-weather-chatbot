@@ -45,21 +45,47 @@ body,html{
 
 }
 
+.wrapper {
+    display: flex;
+    width: 90%;
+    /* background-color: red; */
+    height: 60px;
+    gap: 0px;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+}
+
 .type_msg{
-    color: rgb(32, 233, 255);
+    /* color: rgb(32, 233, 255);
     background-color: rgba(86, 107, 131, 0.612) ;
     text-size-adjust: 10px;
     border-radius: 10px 0px 0px 10px ;
     border: 0px ;
     border-right-width: 30px;
     height: 37px;
-    width: 250px;
+    width: 85%;
     overflow: visible;
     position:absolute;
     bottom: 20px;
-    left: 20px;
+    left: 0px;
     resize: none;
+    text-align:left, center; */
+    color: rgb(32, 233, 255);
+    background-color: rgba(86, 107, 131, 0.612) ;
+    /* text-size-adjust: 10px; */
+    font-size: large;
+    border-radius: 10px 0px 0px 10px ;
+    /* border-right-width: 30px; */
+    height: 37px;
+    width: 85%;
+    overflow: hidden;
+    /* position:absolute;
+    bottom: 20px;
+    left: 0px; */
+    /* resize: none; */
     text-align:left, center;
+    border: none;
 }
 
 .type_msg::placeholder {
@@ -72,15 +98,15 @@ body,html{
     border-radius: 0px 10px 10px 0px ;
     border-right-width: 30px;
     height: 37px;
-    width: 35px;
+    width: 15%;
     color: white;
     text-align: center;
     display: inline-block;
     font-size: 16px;
-    position:absolute;
+    /* position:absolute;
     bottom: 20px;
-    right: 20px;
-    margin-left: 5px;
+    right: 0px; */
+    /* margin-left: 5px; */
   }
 
 .scrollbar {
@@ -140,10 +166,21 @@ body,html{
     align-self: end;
 }
 
-@media only screen and (max-width:768px) {
+#messageForm {
+    /* height: 50px; */
+    /* width: 90%; */
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+@media only screen and (max-width:768px) and (min-height: 850px){
 
     body {
-        height: 100vh;
+        height: 100svh;
         box-sizing: border-box;
         position: relative;
     }
@@ -175,9 +212,10 @@ body,html{
     }
     .type_msg{
         height: 37px;
+        width: 100%;
     }
     .scrollbar {
-        height: 415px;
+        height: 520px;
         padding: 10px;
 }
 .type_msg{
@@ -186,15 +224,14 @@ body,html{
     /* text-size-adjust: 10px; */
     font-size: large;
     border-radius: 10px 0px 0px 10px ;
-    border: 0px ;
-    border-right-width: 30px;
+    /* border-right-width: 30px; */
     height: 37px;
-    width: 280px;
-    overflow: visible;
-    position:absolute;
+    width: 85%;
+    overflow: hidden;
+    /* position:absolute;
     bottom: 20px;
-    left: 20px;
-    resize: none;
+    left: 0px; */
+    /* resize: none; */
     text-align:left, center;
 }
 }
@@ -232,7 +269,7 @@ body,html{
 
 }
 
-@media only screen and (min-width:1024px) {
+/* @media only screen and (min-width:1024px) {
 
     .card-header span{
         font-size: 30px;
@@ -264,34 +301,8 @@ body,html{
     #scrollbar1::-webkit-scrollbar {
         width: 11px;
     }
-}
-
-
- /* @media only screen and (max-width:600px) {
-
-    .card-header span{
-        font-size: 24px;
-        display: inline-block;
-    }
-    .card-header p{
-        font-size: 16px;
-        display: inline-block;
-    }
-    .card-header{
-        padding: 20px;
-        height: 400px;
-    }
-    .chat-body{
-        padding: 20px;
-        height: 900px;
-    }
-    .type_msg{
-        height: 37px;
-    }
-    .scrollbar {
-        height: 125px;
-        padding: 10px;
-}
 } */
+
+
 
 
