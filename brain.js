@@ -251,7 +251,7 @@ if (result.status === 2) {
         for (let key in jsonData) {
           if (jsonData.hasOwnProperty(key)) {
             // console.log(jsonData[key].user === user && !jsonData[key].last)
-              if (jsonData[key].user === user && !jsonData[key].last) {
+              if (jsonData[key].user === user) {
               jsonData[key].last = savedi;
               console.log('last is ' + jsonData[key].last);
               const updatedJsonData = JSON.stringify(jsonData, null, 2);
