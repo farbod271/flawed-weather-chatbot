@@ -15,47 +15,32 @@ result = {
 var city = await extractCity(unparsed_nachricht);
 
 
-
-
-
-
 // Read the JSON file
     const data = await fs.readFile(filePath, 'utf8')
 
     
     // Parse the JSON data
     var jsonData = JSON.parse(data);
-    // console.log(jsonData)
 
     // Loop through the keys and examine the `user` property
     let i = 1;
     for (let key in jsonData) {
-        // console.log(key)
         if (jsonData.hasOwnProperty(key)) {
-            // console.log(jsonData[key].user, user)
             length = Object.keys(jsonData).length;
-            // console.log('User:', jsonData[key].user);
             if (jsonData[key].user === user) {
-                //if city call weather api and save the weather in the json file 2
-                // console.log('User found:', jsonData[key].user)
+                //if city call weather api and save the weather in the json file status code 2
                 if (city) {
                     weather = await fetchWeather(city);
                     jsonData[key].weather = weather;              
                     result.status = 2;
                     result.weather = weather;
                     jsonData[key].hardfallback = 0;
-
-                    // console.log("shoulds")
-
                     break;
               }
                 //if city == null and there is a city in the json file status code 2
                 else if (jsonData[key].weather.name !== undefined) {
-                    // console.log(jsonData[key].weather.name == undefined)
                     result.status = 2;
                     result.weather = jsonData[key].weather;
-                    // console.log("should1")
-
                     break;
                 }
                 //if city == null and there is no city in the json file status code 1 user is fucking around
