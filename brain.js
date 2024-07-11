@@ -266,11 +266,12 @@ if (result.status === 2) {
       for (let key in jsonData) {
         if (jsonData.hasOwnProperty(key)) {
             if (jsonData[key].user === user && jsonData[key].last !== 0) {
+              temp = jsonData[key].last;
             jsonData[key].last++;
             console.log('last is ' + jsonData[key].last);
             const updatedJsonData = JSON.stringify(jsonData, null, 2);
             fs.writeFile(filePath, updatedJsonData, 'utf8')
-            return brain.zwei[jsonData[key].last].answer;
+            return brain.zwei[temp].answer;
             }
         }
       }
